@@ -17,6 +17,10 @@ namespace WebApplication1.Controllers
             return new string[] { "value1", "value2" };
         }
 
+        [Route("Host")]
+        [HttpGet]
+        public ActionResult<string> GetHost() => $"{Environment.MachineName} {System.Net.Dns.GetHostName()} {System.Reflection.Assembly.GetEntryAssembly().GetName().Name}";
+
         // GET api/values/5
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
