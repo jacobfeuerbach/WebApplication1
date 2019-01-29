@@ -1,0 +1,20 @@
+//build image
+docker build -f "WebApplication1/Dockerfile" -t webapplication1 .   
+
+
+//run image locally
+docker run -it -p 8080:80 webapplication1
+
+
+//tag image for ecr
+docker tag webapplication1:latest 147480540281.dkr.ecr.us-east-1.amazonaws.com/webapplication1:latest   
+
+//push to ecr
+docker push 147480540281.dkr.ecr.us-east-1.amazonaws.com/webapplication1:latest 
+
+//loging to ecr
+$(AWS_PROFILE=fbis-eks aws ecr get-login --no-include-email --region us-east-1)
+
+
+//proxy get token
+kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep eks-admin | awk '{print $1}')

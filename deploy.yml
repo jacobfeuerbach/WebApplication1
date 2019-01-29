@@ -23,3 +23,4 @@ spec:
           image: 147480540281.dkr.ecr.us-east-1.amazonaws.com/webapplication1:latest
           ports:
             - containerPort: 80
+          imagePullPolicy: Always
